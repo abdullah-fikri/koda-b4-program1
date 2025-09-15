@@ -39,7 +39,7 @@ Aplikasi ini dibuat untuk mencatat pemasukan, pengeluaran, saldo ter-update, dan
 # flowchart aplikasi
 ```mermaid
 flowchart TD
-    A@{shape: circ, label: "start jalanjan aplikasi"} --> B@{shape: rect, label: "tampilkan menu utama"}
+    A@{shape: circ, label: "start"} --> B@{shape: rect, label: "tampilkan menu utama"}
     
     B --> C@{shape: diamond, label: "pilih opsi?"}
     
