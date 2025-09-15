@@ -1,9 +1,12 @@
-import { question } from "./lib/interface.js";
+import { question,exit } from "./lib/interface.js";
 import {pemasukan} from "./lib/pemasukan.js";
-// import {pengeluaran} from "./lib/pengeluaran.js";
+import {pengeluaran} from "./lib/pengeluaran.js";
+import { showSaldo } from "./lib/saldo.js";
+import { history } from "./lib/riwayat.js";
 
 
-let saldo = 0;
+export let saldo = 0;
+export let riwayat = [];
 
 export async function main(){
      console.log(`
@@ -12,27 +15,40 @@ export async function main(){
     3. Lihat Saldo
     4. Riwayat
     5. exit`);
-    const quest = await question("Selamat Datang, silahkan pilih! ");
+    const quest = await question("\n\nBUKU TABUNGAN APP, silahkan pilih opsi! ");
     switch (quest) {
         case "1":
             await pemasukan();
             break;
         case "2":
-            // await pengeluaran();
+            await pengeluaran();
+            break;
+        case "3":
+            await showSaldo();
             break;
         case "4":
-            // await showSaldo();
+            await history();
             break;
         case "5":
-            // await riwayat();
+            await exit();
             break;
         default:
+            console.log("Data yang dimasukkan tidak sesuai!");
+            main();
             break;
     }
 }
 
+
 export function getSaldo(a){
-    return saldo + a;
+    riwayat.push({jenis: "PEMASUKAN", jumlah: a, waktu: new Date()});
+    return saldo = saldo + a;
+    
+}
+export function getSaldoMin(a){
+    riwayat.push({jenis: "PENGELUARAN", jumlah: a, waktu: new Date()});
+    return saldo = saldo  - a;
+    
 }
 
 main();
